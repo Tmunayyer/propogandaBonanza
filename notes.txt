@@ -1,9 +1,4 @@
-const express = require('express');
-const app = express();
-
-const getAnalysis = require('./utilities/microsoftAzure.js');
-
-app.use(express.static('./client/dist'));
+Sample Microsoft Azure Inputs:
 
 const documents = {
   documents: [
@@ -22,11 +17,18 @@ const documents = {
   ]
 };
 
-app.get('/test', (client_req, client_res) => {
-  getAnalysis(documents, (data) => {
-    client_res.send(data);
-  });
-});
+Sample Microsoft Azure Outputs:
 
-const port = 3001;
-app.listen(port, console.log('listening on port:', port));
+{
+  "documents": [
+    {
+      "id": "1",
+      "score": 0.9619677066802979
+    },
+    {
+      "id": "2",
+      "score": 0.024017512798309326
+    }
+  ],
+  "errors": []
+}
