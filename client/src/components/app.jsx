@@ -2,7 +2,6 @@ import React from 'react';
 import { Component } from 'react';
 
 import SearchBar from './SearchBar.jsx';
-import PubDropdown from './PubDropdown.jsx';
 
 import utilities from '../utility/axiosRequest.js';
 
@@ -11,6 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       data: null,
+      chosenPublisher: 'ABC News',
       publishers: []
     };
     this.handleSearch = this.handleSearch.bind(this);
@@ -35,8 +35,10 @@ class App extends Component {
     if (this.state.publishers.length <= 0) return <div />;
     return (
       <>
-        <PubDropdown publishers={this.state.publishers} />
-        <SearchBar handleSearch={this.handleSearch} />
+        <SearchBar
+          handleSearch={this.handleSearch}
+          publishers={this.state.publishers}
+        />
       </>
     );
   }
