@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 
 import SearchBar from './SearchBar.jsx';
+import ResultsTable from './ResultsTable.jsx';
 
 import utilities from '../utility/axiosRequest.js';
 
@@ -9,7 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null,
+      articles: [],
+      analytics: [],
       chosenPublisher: 'ABC News',
       publishers: []
     };
@@ -22,10 +24,10 @@ class App extends Component {
       query: query
     };
     utilities.analyzeData(searchParams, (server_package) => {
-      console.log(server_package);
-      //   this.setState({
-      //     data: analyzed_data
-      //   });
+      this.setState({
+        articles: server_package.data.articles,
+        analytics: server_package.data.analytics.documents
+      });
     });
   }
 
@@ -43,6 +45,10 @@ class App extends Component {
         <SearchBar
           handleSearch={this.handleSearch}
           publishers={this.state.publishers}
+        />
+        <ResultsTable
+          articles={this.state.articles}
+          analytics={this.state.analytics}
         />
       </>
     );
