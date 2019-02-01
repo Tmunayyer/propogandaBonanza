@@ -2,7 +2,13 @@ import axios from 'axios';
 
 const utilities = {};
 
-utilities.analyzeData = (query, cb) => {
+utilities.analyzeData = (searchVals, cb) => {
+  let query = `q=${searchVals.query}`;
+  if (searchVals.publisher !== null) {
+    query += `&sources=${searchVals.publisher
+      .toLowerCase()
+      .replace(/ /g, '-')}`;
+  }
   axios
     .get('/analysis?' + query)
     .catch((err) => {

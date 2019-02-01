@@ -27,7 +27,7 @@
 //     content: 'FRAMINGHAM, Mass. — A Massachusetts child died last weekend of a flu-related illness, 5 Investigates has learned. The 4-year-old from Middlesex County passed away Sunday, sources said. The Department of Public Health confirmed that two children have died of f… [+866 chars]' },
 
 const parseNewsData = (data) => {
-  const articles = JSON.parse(data).articles;
+  const articles = data.articles;
   const formatted = articles.map((article, i) => {
     return {
       id: i,

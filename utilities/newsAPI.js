@@ -19,7 +19,7 @@ const handleResponse = (response, cb) => {
 };
 
 newsUtilities.getNewsArticles = (query, cb) => {
-  const path = '/v2/top-headlines?country=us&apiKey=';
+  const path = `/v2/everything?${query}&apiKey=`;
   const request_params = {
     method: 'GET',
     hostname: uri,

@@ -16,11 +16,16 @@ class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  handleSearch(query) {
-    utilities.analyzeData(query, (analyzed_data) => {
-      this.setState({
-        data: analyzed_data
-      });
+  handleSearch(publisher, query) {
+    let searchParams = {
+      publisher: publisher,
+      query: query
+    };
+    utilities.analyzeData(searchParams, (server_package) => {
+      console.log(server_package);
+      //   this.setState({
+      //     data: analyzed_data
+      //   });
     });
   }
 

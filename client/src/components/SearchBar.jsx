@@ -20,7 +20,7 @@ class SearchBar extends Component {
     });
   }
   handleClick(event) {
-    this.props.handleSearch(this.state.searchVal);
+    this.props.handleSearch(this.state.chosenPublisher, this.state.searchVal);
     this.setState({
       searchVal: ''
     });

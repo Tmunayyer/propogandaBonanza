@@ -14,9 +14,20 @@ app.get('/publishers', (client_req, client_res) => {
 });
 
 app.get('/analysis', (client_req, client_res) => {
-  newsUtilities.getNewsArticles(null, (data) => {
-    azureUtilities.getAnalysis(parseNewsArticles(data), (res_data) => {
-      client_res.send(res_data);
+  const query = client_req.url.substring(
+    client_req.url.indexOf('?') + 1,
+    client_req.url.length
+  );
+  console.log(query);
+
+  newsUtilities.getNewsArticles(query, (data) => {
+    let news_data = JSON.parse(data);
+    azureUtilities.getAnalysis(parseNewsArticles(news_data), (azure_data) => {
+      let package = {
+        articles: news_data.articles,
+        analytics: azure_data
+      };
+      client_res.send(package);
     });
   });
 });
