@@ -1,6 +1,6 @@
 const https = require('https');
 
-const apiKey = process.env.APIKEY;
+const apiKey = process.env.AZURE_APIKEY;
 const uri = 'eastus.api.cognitive.microsoft.com';
 const path = '/text/analytics/v2.0/sentiment';
 
