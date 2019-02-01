@@ -1,0 +1,19 @@
+{
+  "name": "propogandabonanza",
+  "version": "1.0.0",
+  "description": "MVP Project for Hack Reactor, Find out the sentiment of your favorite news publications towards certain topics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tmunayyer/propogandaBonanza.git"
+  },
+  "author": "Thomas Munayyer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tmunayyer/propogandaBonanza/issues"
+  },
+  "homepage": "https://github.com/Tmunayyer/propogandaBonanza#readme"
+}
