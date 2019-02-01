@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const analyzeData = (query, cb) => {
+const utilities = {};
+
+utilities.analyzeData = (query, cb) => {
   axios
-    .get('/analysis')
+    .get('/analysis?' + query)
     .catch((err) => {
       console.log(err);
     })
@@ -11,4 +13,15 @@ const analyzeData = (query, cb) => {
     });
 };
 
-export default analyzeData;
+utilities.getPublications = (cb) => {
+  axios
+    .get('/publishers')
+    .catch((err) => {
+      console.log(err);
+    })
+    .then((publishers) => {
+      cb(publishers);
+    });
+};
+
+export default utilities;

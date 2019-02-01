@@ -4,6 +4,8 @@ const apiKey = process.env.AZURE_APIKEY;
 const uri = 'eastus.api.cognitive.microsoft.com';
 const path = '/text/analytics/v2.0/sentiment';
 
+let azureUtilities = {};
+
 const request_params = {
   method: 'POST',
   hostname: uri,
@@ -27,7 +29,7 @@ const AzureData = (response, cb) => {
   });
 };
 
-const getAnalysis = (documents, cb) => {
+azureUtilities.getAnalysis = (documents, cb) => {
   let body = JSON.stringify(documents);
 
   let req = https.request(request_params, (azure_response) => {
@@ -37,4 +39,4 @@ const getAnalysis = (documents, cb) => {
   req.end();
 };
 
-module.exports = getAnalysis;
+module.exports = azureUtilities;

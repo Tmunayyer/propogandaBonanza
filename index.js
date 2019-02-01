@@ -1,15 +1,21 @@
 const express = require('express');
 const app = express();
 
-const getAnalysis = require('./utilities/microsoftAzure.js');
-const getNewsArticles = require('./utilities/newsAPI.js');
+const azureUtilities = require('./utilities/microsoftAzure.js');
+const newsUtilities = require('./utilities/newsAPI.js');
 const parseNewsArticles = require('./utilities/parseNewsData.js');
 
 app.use(express.static('./client/dist'));
 
+app.get('/publishers', (client_req, client_res) => {
+  newsUtilities.getNewsPublications((data) => {
+    client_res.send(data);
+  });
+});
+
 app.get('/analysis', (client_req, client_res) => {
-  getNewsArticles(null, (data) => {
-    getAnalysis(parseNewsArticles(data), (res_data) => {
+  newsUtilities.getNewsArticles(null, (data) => {
+    azureUtilities.getAnalysis(parseNewsArticles(data), (res_data) => {
       client_res.send(res_data);
     });
   });
