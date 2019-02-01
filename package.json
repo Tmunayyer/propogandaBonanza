@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Tmunayyer/propogandaBonanza/issues"
   },
-  "homepage": "https://github.com/Tmunayyer/propogandaBonanza#readme"
+  "homepage": "https://github.com/Tmunayyer/propogandaBonanza#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
