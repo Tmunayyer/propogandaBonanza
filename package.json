@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "webpack --display-error-details",
-    "start": "node index.js"
+    "prestart": "webpack --display-error-details --watch",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
