@@ -29,5 +29,15 @@ utilities.getPublications = (cb) => {
       cb(publishers);
     });
 };
+utilities.getTopNewsSummary = (cb) => {
+  axios
+    .get('/sources')
+    .catch((err) => {
+      console.log(err);
+    })
+    .then((data) => {
+      cb(data);
+    });
+};
 
 export default utilities;

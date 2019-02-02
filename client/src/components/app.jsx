@@ -1,9 +1,11 @@
 import React from 'react';
 import { Component } from 'react';
 
+import PageSelector from './PageSelector.jsx';
 import SearchBar from './SearchBar.jsx';
-import ResultsTable from './ResultsTable.jsx';
 import MyGauge from './Gauge.jsx';
+import ResultsTable from './ResultsTable.jsx';
+import SummaryPage from './SummaryPage.jsx';
 
 import utilities from '../utility/axiosRequest.js';
 
@@ -14,9 +16,11 @@ class App extends Component {
       articles: [],
       analytics: [],
       chosenPublisher: 'ABC News',
-      publishers: []
+      publishers: {},
+      page: 'Summary Page'
     };
     this.handleSearch = this.handleSearch.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
   }
 
   handleSearch(publisher, query) {
@@ -31,6 +35,11 @@ class App extends Component {
       });
     });
   }
+  handlePageChange(event) {
+    this.setState({
+      page: event.target.value
+    });
+  }
 
   componentDidMount() {
     utilities.getPublications((response_data) => {
@@ -40,22 +49,34 @@ class App extends Component {
     });
   }
   render() {
-    if (this.state.publishers.length <= 0) return <div />;
-    return (
-      <>
-        <SearchBar
-          handleSearch={this.handleSearch}
-          publishers={this.state.publishers}
-        />
-        <div>
-          <MyGauge analytics={this.state.analytics} />
-        </div>
-        <ResultsTable
-          articles={this.state.articles}
-          analytics={this.state.analytics}
-        />
-      </>
-    );
+    if (this.state.page === 'Search Page') {
+      return (
+        <>
+          <div>
+            <PageSelector handlePageChange={this.handlePageChange} />
+          </div>
+          <br />
+          <SearchBar
+            handleSearch={this.handleSearch}
+            publishers={this.state.publishers}
+          />
+          <div>
+            <MyGauge analytics={this.state.analytics} />
+          </div>
+          <ResultsTable
+            articles={this.state.articles}
+            analytics={this.state.analytics}
+          />
+        </>
+      );
+    } else if (this.state.page === 'Summary Page') {
+      return (
+        <>
+          <PageSelector handlePageChange={this.handlePageChange} />
+          <SummaryPage publishers={this.state.publishers} />
+        </>
+      );
+    }
   }
 }
 

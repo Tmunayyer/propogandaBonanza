@@ -6,6 +6,8 @@ const path = '/text/analytics/v2.0/sentiment';
 
 let azureUtilities = {};
 
+let cache = {};
+
 const request_params = {
   method: 'POST',
   hostname: uri,

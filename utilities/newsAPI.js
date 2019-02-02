@@ -2,6 +2,8 @@ const https = require('https');
 
 let newsUtilities = {};
 
+let cache = {};
+
 const apiKey = process.env.NEWS_APIKEY;
 const uri = 'newsapi.org';
 
@@ -34,6 +36,9 @@ newsUtilities.getNewsArticles = (query, cb) => {
 };
 
 newsUtilities.getNewsPublications = (cb) => {
+  if (cache.sources !== undefined) {
+    return cb(cache.sources);
+  }
   const path = '/v2/sources?apiKey=';
   const request_params = {
     method: 'GET',
