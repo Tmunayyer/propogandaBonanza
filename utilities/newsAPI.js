@@ -52,4 +52,18 @@ newsUtilities.getNewsPublications = (cb) => {
   req.end();
 };
 
+newsUtilities.getTopHeadlinesForPublication = (publication, cb) => {
+  const path = `/v2/top-headlines?sources=${publication}&apiKey=`;
+  const request_params = {
+    method: 'GET',
+    hostname: uri,
+    path: path + apiKey
+  };
+  const req = https.request(request_params, (response) => {
+    handleResponse(response, cb);
+  });
+  req.write('');
+  req.end();
+};
+
 module.exports = newsUtilities;

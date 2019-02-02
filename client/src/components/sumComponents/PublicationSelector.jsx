@@ -14,7 +14,12 @@ const PublicationSelector = (props) => {
         if (props.publishers.data.sources[count] !== undefined) {
           row.push(
             <td>
-              <button>{props.publishers.data.sources[count].name}</button>
+              <button
+                onClick={props.handleClick}
+                value={props.publishers.data.sources[count].name}
+              >
+                {props.publishers.data.sources[count].name}
+              </button>
             </td>
           );
         }

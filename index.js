@@ -18,10 +18,34 @@ app.get('/analysis', (client_req, client_res) => {
     client_req.url.indexOf('?') + 1,
     client_req.url.length
   );
-  console.log(query);
 
   newsUtilities.getNewsArticles(query, (data) => {
     let news_data = JSON.parse(data);
+    azureUtilities.getAnalysis(parseNewsArticles(news_data), (azure_data) => {
+      let package = {
+        articles: news_data.articles,
+        analytics: azure_data
+      };
+      client_res.send(package);
+    });
+  });
+});
+
+app.get('/avgTopByPublisher', (client_req, client_res) => {
+  const pub = client_req.url.substring(
+    client_req.url.indexOf('?') + 1,
+    client_req.url.length
+  );
+  newsUtilities.getTopHeadlinesForPublication(pub, (data) => {
+    let news_data = JSON.parse(data);
+    if (news_data.articles.length < 1) {
+      let package = {
+        articles: news_data.articles,
+        analytics: { documents: [] }
+      };
+      client_res.send(package);
+      return;
+    }
     azureUtilities.getAnalysis(parseNewsArticles(news_data), (azure_data) => {
       let package = {
         articles: news_data.articles,

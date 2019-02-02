@@ -73,7 +73,10 @@ class App extends Component {
       return (
         <>
           <PageSelector handlePageChange={this.handlePageChange} />
-          <SummaryPage publishers={this.state.publishers} />
+          <SummaryPage
+            publishers={this.state.publishers}
+            data={this.state.analytics}
+          />
         </>
       );
     }

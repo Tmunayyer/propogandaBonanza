@@ -35,7 +35,6 @@ const parseNewsData = (data) => {
       text: article.description
     };
   });
-  console.log(formatted);
   let output = {};
   output.documents = formatted;
   return output;

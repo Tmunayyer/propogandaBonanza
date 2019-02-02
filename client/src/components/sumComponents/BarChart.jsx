@@ -1,36 +1,14 @@
 import React from 'react';
-import { Chart } from 'react-charts';
+import { BarChart, XAxis, YAxis, Bar } from 'recharts';
 
 const MyBarChart = (props) => {
-  const lineChart = (
-    // A react-chart hyper-responsively and continuusly fills the available
-    // space of its parent element automatically
-    <div
-      style={{
-        width: '400px',
-        height: '300px'
-      }}
-    >
-      <Chart
-        data={[
-          {
-            label: 'Series 1',
-            data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
-          },
-          {
-            label: 'Series 2',
-            data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
-          }
-        ]}
-        axes={[
-          { primary: true, type: 'linear', position: 'bottom' },
-          { type: 'linear', position: 'left' }
-        ]}
-      />
-    </div>
+  return (
+    <BarChart width={600} height={300} data={props.data}>
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Bar type="monotone" dataKey="amt" fill="#8884d8" />
+    </BarChart>
   );
-
-  return lineChart;
 };
 
 export default MyBarChart;

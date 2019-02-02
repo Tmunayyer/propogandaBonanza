@@ -7,7 +7,9 @@ utilities.analyzeData = (searchVals, cb) => {
   if (searchVals.publisher !== null) {
     query += `&sources=${searchVals.publisher
       .toLowerCase()
-      .replace(/ /g, '-')}`;
+      .replace(/ /g, '-')
+      .replace(/\(/g, '')
+      .replace(/\)/g, '')}`;
   }
   axios
     .get('/analysis?' + query)
@@ -32,6 +34,32 @@ utilities.getPublications = (cb) => {
 utilities.getTopNewsSummary = (cb) => {
   axios
     .get('/sources')
+    .catch((err) => {
+      console.log(err);
+    })
+    .then((data) => {
+      cb(data);
+    });
+};
+
+utilities.getPublicationAverage = (pack, cb) => {
+  let publication = pack.name;
+  let query = pack.filter;
+
+  let axiosGetString =
+    '/avgTopByPublisher?' +
+    publication
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/\(/g, '')
+      .replace(/\)/g, '');
+
+  if (query !== undefined) {
+    axiosGetString += '&q=' + query;
+  }
+
+  axios
+    .get(axiosGetString)
     .catch((err) => {
       console.log(err);
     })
