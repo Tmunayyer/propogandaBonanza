@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 
 import PublicationSelector from './sumComponents/PublicationSelector.jsx';
+import MyBarChart from './sumComponents/BarChart.jsx';
 
 class SummaryPage extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class SummaryPage extends Component {
       return (
         <>
           <PublicationSelector publishers={this.props.publishers} />
-          <PubGraph />
+          <MyBarChart />
           <p>Summary Page</p>
         </>
       );
