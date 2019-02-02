@@ -3,6 +3,7 @@ import { Component } from 'react';
 
 import SearchBar from './SearchBar.jsx';
 import ResultsTable from './ResultsTable.jsx';
+import MyGauge from './Gauge.jsx';
 
 import utilities from '../utility/axiosRequest.js';
 
@@ -46,6 +47,9 @@ class App extends Component {
           handleSearch={this.handleSearch}
           publishers={this.state.publishers}
         />
+        <div>
+          <MyGauge analytics={this.state.analytics} />
+        </div>
         <ResultsTable
           articles={this.state.articles}
           analytics={this.state.analytics}

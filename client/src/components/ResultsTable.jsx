@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ResultsTable = (props) => {
-  console.log(props);
   return (
     <table>
       <tbody>
@@ -18,14 +17,14 @@ const ResultsTable = (props) => {
               <td>
                 <img
                   src={article.urlToImage}
-                  style={{ 'max-width': '50px', 'max-height': '50px' }}
+                  style={{ maxWidth: '50px', maxHeight: '50px' }}
                 />
               </td>
               <td>{article.source.name}</td>
               <td>
                 <a href={article.url}>{article.title}</a>
               </td>
-              <td>{props.analytics[i].score}</td>
+              <td>{Math.round(props.analytics[i].score * 100)}</td>
               <td>{article.publishedAt}</td>
             </tr>
           );
